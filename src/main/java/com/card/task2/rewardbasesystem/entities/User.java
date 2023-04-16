@@ -21,13 +21,14 @@ public class User {
 
     private String userName;
 
+    private String bankName;
     private String accountNumber;
 
     private String mobileNumber;
 
     private String email;
 
-    private String totalRewards;
+    private int totalRewards;
 
     private LocalDate createdDate;
 

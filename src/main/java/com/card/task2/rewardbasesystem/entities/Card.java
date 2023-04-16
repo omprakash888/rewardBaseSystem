@@ -19,7 +19,6 @@ public class Card {
     @Column(name = "id", updatable = false, nullable = false)
     private long cardId;
 
-    private String bankName;
     private String cardNumber;
 
     private String cvv;
@@ -28,7 +27,7 @@ public class Card {
 
     private boolean isCreditCard;
 
-    private String nameOfCreditCard;
+    private String cardName;
 
     private LocalDate expiryDate;
 

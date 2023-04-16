@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -20,18 +21,19 @@ public class Transaction {
 
     private boolean isCreditTransaction;
 
-    private String transactionAmount;
+    private int transactionAmount;
 
     private String transactionMode;
 
-    private String transactionDoneAt;
+    private String spendCategory;
 
-    private LocalDate transactionDate;
+    private LocalDateTime transactionDate;
 
-    private String rewardPoints;
+    private int rewardPoints;
 
-    private String cashback;
+    private int cashback;
 
     @ManyToOne
     private Card card;
+
 }
