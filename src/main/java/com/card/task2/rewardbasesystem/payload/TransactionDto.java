@@ -14,18 +14,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TransactionDto {
     private long transactionId;
-
     private boolean isCreditTransaction;
-
     private int transactionAmount;
-
     private String transactionMode;
-
     private String spendCategory;
-
     private String rewardPoints;
-
     private String cashback;
-
+    private LocalDateTime expiryDateOfRewardPoints;
     private long cardId;
 }

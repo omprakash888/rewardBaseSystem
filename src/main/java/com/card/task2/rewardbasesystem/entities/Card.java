@@ -1,9 +1,11 @@
 package com.card.task2.rewardbasesystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -33,9 +35,17 @@ public class Card {
 
     private LocalDate cardCreatedDate;
 
+    @Column(columnDefinition = "Integer default '0'")
+    private int totalRewards;
+
+    @Column(columnDefinition = "Integer default '0'")
+    private int cashBack;
+
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Transaction> transactions;
 }

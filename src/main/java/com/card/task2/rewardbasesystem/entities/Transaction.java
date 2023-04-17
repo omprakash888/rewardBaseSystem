@@ -1,5 +1,6 @@
 package com.card.task2.rewardbasesystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,10 @@ public class Transaction {
 
     private int cashback;
 
+    private LocalDateTime expiryDateOfRewardPoints;
+
     @ManyToOne
+    @JsonIgnore
     private Card card;
 
 }

@@ -43,6 +43,14 @@ public class CardServiceImpl implements CardService {
         return mapToCardDto(createdCard);
     }
 
+    @Override
+    public String getTotalPoints(long cardId) {
+        Card card = this.cardRepository.findById(cardId).orElseThrow();
+        int totalPoints = card.getTotalRewards();
+        return "Your have " + totalPoints + " reward points in your wallet";
+    }
+
+
     private Card mapToCard(CardDto cardDto) {
         return this.modelMapper.map(cardDto,Card.class);
     }

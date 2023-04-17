@@ -1,6 +1,7 @@
 package com.card.task2.rewardbasesystem.payload;
 
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,9 @@ public class CardDto {
     private String cardName;
 
     private long userId;
+
+    private int totalRewards;
+
+    private int cashBack;
 
 }

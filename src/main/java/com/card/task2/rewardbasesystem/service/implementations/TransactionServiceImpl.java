@@ -14,6 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,6 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
             int cashBack = (transactionDto.getTransactionAmount() * percent)/100;
             transaction.setCashback(cashBack);
             transaction.setRewardPoints(0);
+            card.setCashBack(card.getCashBack() + cashBack);
             user.setTotalCashBack(user.getTotalCashBack() + cashBack);
         }
         else {
@@ -69,19 +72,30 @@ public class TransactionServiceImpl implements TransactionService {
             int totalPoints = points * Integer.parseInt(bankRule.getPoints());
             transaction.setRewardPoints(totalPoints);
             transaction.setCashback(0);
+            card.setTotalRewards(card.getTotalRewards() + totalPoints);
             user.setTotalRewards(user.getTotalRewards() + totalPoints);
         }
 
         this.userRepository.save(user);
+        this.cardRepository.save(card);
+        transaction.setExpiryDateOfRewardPoints(LocalDateTime.now().plusDays(90));
         Transaction createdTransaction = this.transactionRepository.save(transaction);
         return mapToTransactionDto(createdTransaction);
+    }
+
+    @Override
+    public String getExpiryPoints(long cardId) {
+        Transaction transaction =  this.transactionRepository.getExpiryPoints(cardId);
+        Duration duration = Duration.between(LocalDateTime.now(), transaction.getExpiryDateOfRewardPoints());
+        String days = String.valueOf(duration.toDays());
+        return "Your " + transaction.getRewardPoints() + " points from total points are expiring in " + days + " days";
     }
 
     private BankRule getRewardRule(Transaction transaction) {
         String bankName = transaction.getCard().getUser().getBankName();
         String cardName = transaction.getCard().getCardName();
 
-        List<BankRule> rules = this.bankRuleRepository.findAllByBankNameAndCardName(bankName, cardName);
+        List<BankRule> rules = this.bankRuleRepository.findAllByBankNameAndCardName(bankName, cardName, LocalDate.now());
         BankRule anyExpenseRule = null;
         for (BankRule bankRule : rules) {
             if(bankRule.getSpendCategory().contains(transaction.getSpendCategory())) {
