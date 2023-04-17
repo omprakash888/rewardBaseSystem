@@ -67,7 +67,7 @@
       "spendCategory" : "dining or movies or entertainment"
     }
   ],
-  "YES BANK" : [
+  "Yes Bank" : [
     {
       "cardName" : "yes bank prosperity rewards credit card",
       "rule" : "every 200",
@@ -93,7 +93,7 @@
       "spendCategory" : "any"
     }
   ],
-  "AXIS BANK" : [
+  "Axis Bank" : [
     {
       "cardName" : "HSBC card91 platinum credit card",
       "rule" : "every 150",

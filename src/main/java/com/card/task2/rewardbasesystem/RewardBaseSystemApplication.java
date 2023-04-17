@@ -16,8 +16,8 @@ import java.util.Map;
 @SpringBootApplication
 public class RewardBaseSystemApplication {
 
-	public static Map<String, List<RewardRule>> reward;
 
+	private static final String FILEPATH = "/home/omprakash/rewardBaseSystem/src/main/resources/rewardRule.json";
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
@@ -25,19 +25,22 @@ public class RewardBaseSystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RewardBaseSystemApplication.class, args);
-		createObject();
 	}
 
-	private static void createObject() {
-		File file = new File("/home/omprakash/rewardBaseSystem/src/main/resources/rewardRule.json");
+	@Bean
+	public  Map<String, List<RewardRule>> createObject() {
+
+		File file = new File(FILEPATH);
 		ObjectMapper mapper = new ObjectMapper();
+		Map<String, List<RewardRule>> reward;
 		try {
-			reward = mapper.readValue(file, new TypeReference<Map<String,List<RewardRule>>>() {});
+			reward = mapper.readValue(file, new TypeReference<Map<String, List<RewardRule>>>() {
+			});
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		return reward;
 	}
-
 
 
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class UserServiceImplementations implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,7 +26,6 @@ public class UserServiceImplementations implements UserService {
         String accountNumber = String.valueOf((long) (Math.random() * 1000000000000000L));
         accountNumber = accountNumber.length() < 15 ? "0" + accountNumber : accountNumber;
         user.setAccountNumber(accountNumber);
-        user.setTotalRewards(0);
         User createdUser = userRepository.save(user);
         return mapToUserDto(createdUser);
     }

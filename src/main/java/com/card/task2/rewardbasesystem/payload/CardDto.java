@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
 public class CardDto {
 
     private long cardId;

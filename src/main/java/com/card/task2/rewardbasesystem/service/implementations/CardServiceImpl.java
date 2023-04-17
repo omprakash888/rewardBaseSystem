@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class CardServiceImplementations implements CardService {
+public class CardServiceImpl implements CardService {
 
     @Autowired
     private CardRepository cardRepository;
@@ -26,7 +26,6 @@ public class CardServiceImplementations implements CardService {
 
     @Override
     public CardDto createCard(CardDto cardDto) {
-        System.out.println("is credit card " + cardDto.isCreditCard());
         Card card = mapToCard(cardDto);
         User user = this.userRepository.findById(cardDto.getUserId()).orElseThrow();
         card.setUser(user);
@@ -38,6 +37,7 @@ public class CardServiceImplementations implements CardService {
         card.setCvv(cvv);
         card.setExpiryDate(LocalDate.now().plusYears(5));
         card.setCardCreatedDate(LocalDate.now());
+
         Card createdCard = this.cardRepository.save(card);
 
         return mapToCardDto(createdCard);
