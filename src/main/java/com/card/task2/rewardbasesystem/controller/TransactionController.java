@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TransactionController {
 
@@ -20,9 +22,4 @@ public class TransactionController {
         return new ResponseEntity<>(createdTransactionDto, HttpStatus.CREATED);
     }
 
-    @GetMapping("api/expiryPoints")
-    public ResponseEntity<String> getExpiryPoints(@RequestParam long cardId) {
-        String expiry = this.transactionService.getExpiryPoints(cardId);
-        return new ResponseEntity<>(expiry, HttpStatus.OK);
-    }
 }

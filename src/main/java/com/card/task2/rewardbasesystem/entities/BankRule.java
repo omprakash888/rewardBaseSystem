@@ -31,9 +31,10 @@ public class BankRule {
 
     private LocalDate ruleCreatedDate;
 
+    private String ruleApplicable;
+
     private boolean isRuleActive;
 
-    @Column(columnDefinition = "Integer default '90'")
     private int validityOfRewardPoints;
 
     private LocalDate validityOfRule;

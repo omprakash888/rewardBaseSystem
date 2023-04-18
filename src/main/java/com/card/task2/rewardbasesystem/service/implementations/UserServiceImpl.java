@@ -21,18 +21,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        User user = mapToUser(userDto);
-        user.setCreatedDate(LocalDate.now());
         String accountNumber = String.valueOf((long) (Math.random() * 1000000000000000L));
         accountNumber = accountNumber.length() < 15 ? "0" + accountNumber : accountNumber;
-        user.setAccountNumber(accountNumber);
+
+        User user = User.builder()
+                        .userName(userDto.getUserName())
+                        .bankName(userDto.getBankName())
+                        .email(userDto.getEmail())
+                        .createdDate(LocalDate.now())
+                        .mobileNumber(userDto.getMobileNumber())
+                        .accountNumber(accountNumber)
+                        .build();
+
         User createdUser = userRepository.save(user);
         return mapToUserDto(createdUser);
-    }
-
-    private User mapToUser(UserDto userDto) {
-        User user = this.modelMapper.map(userDto, User.class);
-        return user;
     }
 
     private UserDto mapToUserDto(User user) {

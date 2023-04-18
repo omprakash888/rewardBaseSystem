@@ -19,6 +19,8 @@ public class BankRuleDto {
     private String spendCategory;
     private LocalDate ruleCreatedDate;
     private boolean isRuleActive;
+
+    private String ruleApplicable;
     private int validityOfRewardPoints;
     private int validityOfRule;
     private LocalDate ruleUpdatedDate;

@@ -1,6 +1,5 @@
 package com.card.task2.rewardbasesystem.controller;
 
-import com.card.task2.rewardbasesystem.entities.Transaction;
 import com.card.task2.rewardbasesystem.payload.CardDto;
 import com.card.task2.rewardbasesystem.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("api/card/")

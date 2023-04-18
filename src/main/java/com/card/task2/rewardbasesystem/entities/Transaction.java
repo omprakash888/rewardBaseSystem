@@ -2,10 +2,7 @@ package com.card.task2.rewardbasesystem.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 import java.time.LocalDateTime;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "transaction_details")
 public class Transaction {
 
@@ -33,6 +31,9 @@ public class Transaction {
     private LocalDateTime transactionDate;
 
     private int rewardPoints;
+
+    @Column(columnDefinition = "varchar(255) default 'expenses'")
+    private String rewardType;
 
     private int cashback;
 
